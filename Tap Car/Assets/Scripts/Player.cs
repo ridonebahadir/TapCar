@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
          
             if (index==id)
             {
+                playerParent.parkTrue = true;
                 playerParent.confetti.Play();
                 playerParent.completedCar++;
                 DgText();
@@ -44,7 +45,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Debug.Log("FAIL");
+                playerParent.Fail();
+                playerParent.parkTrue = false;
             }
         }
         if (other.tag== "Enemy")
@@ -80,9 +82,11 @@ public class Player : MonoBehaviour
    
     void DgText()
     {
+        playerParent.run = false;
         playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(() =>
-          playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1)
-          ).SetEase(Ease.OutElastic);
+        playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1).OnComplete(() =>
+        playerParent.run = true
+        )).SetEase(Ease.OutElastic);
     }
     IEnumerator EditPos(Transform other)
     {

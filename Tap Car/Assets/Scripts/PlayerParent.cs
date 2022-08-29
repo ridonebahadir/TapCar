@@ -19,18 +19,19 @@ public class PlayerParent : MonoBehaviour
 {
     List<int> numbersToChooseFrom = new List<int>();
     List<GameObject> cars = new List<GameObject>();
-    public PathCreator pathCreator;
+    //public PathCreator pathCreator;
     public ColorTone[] colorTones;
     bool oneTime;
     public Material[] material;
-    
-    
-    [Space(50)]
+    public bool run = true;
+
+    [Space(30)]
     [Header("Final")]
     public ParticleSystem confetti;
     public Text completedCarText;
     public int completedCar;
- 
+    public bool parkTrue;
+    public GameObject failText;
     void Start()
     {
         
@@ -40,7 +41,7 @@ public class PlayerParent : MonoBehaviour
             numbersToChooseFrom.Add(i);
         }
        
-        transform.position = pathCreator.bezierPath.points[0];
+        //transform.position = pathCreator.bezierPath.points[0];
         //transform.position = pathCreator.path.localPoints[0];
 
 
@@ -56,35 +57,39 @@ public class PlayerParent : MonoBehaviour
             
         }
     }
-   
+    
     void Update()
     {
+        if (run)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (!oneTime)
+                {
+                    OnRoad();
+                    cars[0].transform.GetChild(0).transform.parent.GetComponent<PathFollower>().enabled = true;
+                    oneTime = true;
+
+                }
+
+            }
+            else
+            {
+
+                if (oneTime)
+                {
+                    run = false;
+                    OffRoad();
+                    oneTime = false;
+                    cars[0].transform.GetChild(0).transform.parent.GetComponent<PathFollower>().enabled = false;
+
+
+
+
+                }
+            }
+        }
        
-        if (Input.GetMouseButton(0))
-        {
-            if (!oneTime)
-            {
-                OnRoad();
-                cars[0].transform.GetChild(0).transform.parent.GetComponent<PathFollower>().enabled = true;
-                oneTime = true;
-                
-            }
-
-        }
-        else
-        {
-            
-            if (oneTime)
-            {
-                OffRoad();
-                oneTime = false;
-                cars[0].transform.GetChild(0).transform.parent.GetComponent<PathFollower>().enabled = false;
-               
-               
-                
-
-            }
-        }
           
            
     }
@@ -99,7 +104,7 @@ public class PlayerParent : MonoBehaviour
         mySequence = DOTween.Sequence();
         mySequenceR = DOTween.Sequence();
         GameObject obj = cars[0].transform.GetChild(0).gameObject;
-        mySequence.Append(obj.transform.DOLocalMove(Vector3.zero, 1f).OnComplete(() => StartCoroutine(CarMoveForward())));
+        mySequence.Append(obj.transform.DOLocalMove(Vector3.zero, 1f).OnComplete(() => StartCoroutine(CarsMoveForward())));
         mySequenceR.Append(obj.transform.DOLocalRotate(new Vector3(60, 0, 90), 0.5f).OnComplete(() => obj.transform.DOLocalRotate(new Vector3(90, -90, 0), 0.5f)));
 
        
@@ -109,10 +114,20 @@ public class PlayerParent : MonoBehaviour
         mySequenceO = DOTween.Sequence();
         mySequenceOR = DOTween.Sequence();
         GameObject obj = cars[0].transform.GetChild(0).gameObject;
-        mySequenceO.Append(obj.transform.DOLocalMove(new Vector3(0, 3f, 1f), 1f).OnComplete(() => cars.RemoveAt(0)));
         mySequenceOR.Append(obj.transform.DOLocalRotate(new Vector3(0, 0, 90), 1f));
+        mySequenceO.Append(obj.transform.DOLocalMove(new Vector3(0, 3f, 1f), 1f).OnComplete(() => {
+
+           
+            if (!parkTrue)
+            {
+                Fail();
+            }
+            cars.RemoveAt(0);
+            parkTrue = false;
+
+        }));
     }
-    IEnumerator CarMoveForward()
+    IEnumerator CarsMoveForward()
     {
 
         for (int i = 1; i < cars.Count; i++)
@@ -121,5 +136,12 @@ public class PlayerParent : MonoBehaviour
             cars[i].transform.DOLocalMoveZ(cars[i].transform.localPosition.z + 3, 0.3f);
             yield return new WaitForSeconds(0.3f);
         }
+    }
+    public void Fail()
+    {
+        run = false;
+        failText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(() =>
+         GameManager.Restart()
+         ).SetEase(Ease.OutElastic);
     }
 }
