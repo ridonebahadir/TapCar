@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
             DgKill();
             PlayerObj();
             Enemy(other.gameObject);
+            playerParent.Fail();
            
         }
     }
