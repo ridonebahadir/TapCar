@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 196
     height: 730.8
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 500, y: 100}
   m_MaxSize: {x: 40480, y: 8096}
   vertical: 0
-  controlID: 46
+  controlID: 113
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 8096}
   vertical: 0
-  controlID: 98
+  controlID: 77
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -383,22 +383,21 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SkipHidden: 0
     m_SearchArea: 1
-    m_Folders:
-    - Assets/Prefab
+    m_Folders: []
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 0
   m_StartGridSize: 64
   m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\RBT\Desktop\Midcat\Tap Car
+  m_LastProjectPath: C:\Users\RBT\Desktop\Midcat\TapCar\Tap Car
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 30c40100
     m_LastClickedID: 115760
-    m_ExpandedIDs: 00000000ce740000d0740000d2740000d4740000d6740000d8740000da740000dc740000de740000e0740000e2740000
+    m_ExpandedIDs: 00000000e2820000e4820000e6820000e8820000ea820000ec820000ee820000f0820000f2820000f4820000f6820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -426,7 +425,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000ce740000d0740000d2740000d4740000d6740000d8740000da740000dc740000de740000e27400003aff5900
+    m_ExpandedIDs: ffffffff00000000e2820000e4820000e6820000e8820000ea820000ec820000ee820000f0820000f2820000f4820000f6820000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -554,23 +553,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 80610000
-      m_LastClickedID: 24960
-      m_ExpandedIDs: 98e8e6ff607cfdff38a1fdff1ea3fdff5a05feff043efeff7641feff7674feffc876feff8889feff1894feffbcbdfeff14c6feff1ac6feff6adafeff10e3feff7af9feff24fafeff9e21ffff58f9ffff32fbffff105c0000189b330006d0330084d133003c4c3400ce4d340084623400d28034002a813400a88234004e683600e06936003c9d3600c09e3600001b3900921c390020cc3900c67153004a945300f4205600a82a56003a2c56003c5f5600945f560094bf6200c0c06200d2eb62001ced6200
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: EnemyManager
-        m_OriginalName: EnemyManager
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -164768
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 
@@ -613,8 +612,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -100, y: -25.599976}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 0}
+      snapOffsetDelta: {x: -100, y: -25.599976}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -635,7 +634,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 24.8}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -668,7 +667,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 1.6000061, y: 86}
+      snapOffset: {x: 67.5, y: 86}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Orientation
@@ -856,7 +855,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.59931046, y: 0.038768016, z: -0.029281976, w: 0.7990939}
     speed: 2
-    m_Value: {x: 0.59932846, y: 0.037567746, z: -0.02838178, w: 0.79911745}
+    m_Value: {x: -0.5993105, y: -0.03876802, z: 0.029281978, w: -0.79909396}
   m_Size:
     m_Target: 10.854043
     speed: 2

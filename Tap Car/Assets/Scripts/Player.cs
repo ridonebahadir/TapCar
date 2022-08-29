@@ -9,22 +9,38 @@ public class Player : MonoBehaviour
     public int id;
     PlayerParent playerParent;
     PathFollower pathFollower;
+    
     private void Start()
     {
         pathFollower = transform.parent.GetComponent<PathFollower>();
         playerParent = transform.parent.parent.GetComponent<PlayerParent>();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(()=>
+            playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1)
+            ).SetEase(Ease.OutElastic);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag==("ParkArea"))
         {
             int index =other.transform.parent.GetSiblingIndex();
-          
+            other.GetComponent<BoxCollider>().enabled = false;
+            StartCoroutine(EditPos(other.transform));
          
             if (index==id)
             {
-                Debug.Log("YEAH");
+                playerParent.confetti.Play();
+                playerParent.completedCar++;
+                DgText();
+                playerParent.completedCarText.text = playerParent.completedCar.ToString() + " / " + playerParent.transform.childCount;
+               
+               
+
             }
             else
             {
@@ -60,5 +76,18 @@ public class Player : MonoBehaviour
         obj.transform.parent.GetComponent<PathFollower>().enabled = false;
         obj.transform.DOBlendableLocalRotateBy(new Vector3(0, 360, 0), 0.5f, RotateMode.FastBeyond360);
         obj.transform.DOLocalMove(new Vector3(0, 3, -3), 0.5f);
+    }
+   
+    void DgText()
+    {
+        playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(() =>
+          playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1)
+          ).SetEase(Ease.OutElastic);
+    }
+    IEnumerator EditPos(Transform other)
+    {
+        yield return new WaitForSeconds(2);
+        transform.parent = other.parent;
+        transform.DOLocalMove(new Vector3(0,0,1), 2f);
     }
 }

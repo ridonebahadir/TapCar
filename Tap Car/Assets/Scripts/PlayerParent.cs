@@ -5,6 +5,7 @@ using PathCreation;
 using PathCreation.Examples;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 
 [System.Serializable]
@@ -22,6 +23,13 @@ public class PlayerParent : MonoBehaviour
     public ColorTone[] colorTones;
     bool oneTime;
     public Material[] material;
+    
+    
+    [Space(50)]
+    [Header("Final")]
+    public ParticleSystem confetti;
+    public Text completedCarText;
+    public int completedCar;
  
     void Start()
     {
