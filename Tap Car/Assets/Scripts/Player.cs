@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     
     private void Start()
     {
+        
         pathFollower = transform.parent.GetComponent<PathFollower>();
+        pathFollower.pathCreator = pathFollower.transform.parent.GetComponent<PathCreator>();
         playerParent = transform.parent.parent.GetComponent<PlayerParent>();
     }
     private void Update()
@@ -80,14 +82,22 @@ public class Player : MonoBehaviour
         obj.transform.DOBlendableLocalRotateBy(new Vector3(0, 360, 0), 0.5f, RotateMode.FastBeyond360);
         obj.transform.DOLocalMove(new Vector3(0, 3, -3), 0.5f);
     }
-   
+
     void DgText()
     {
         playerParent.run = false;
         playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(() =>
-        playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1).OnComplete(() =>
-        playerParent.run = true
-        )).SetEase(Ease.OutElastic);
+        playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1).OnComplete(() => {
+            if (playerParent.cars.Count > 0)
+            {
+                playerParent.run = true;
+            }
+            else
+            {
+                Debug.Log("NEW LEVEL");
+            }
+
+        })).SetEase(Ease.OutElastic);
     }
     IEnumerator EditPos(Transform other)
     {
