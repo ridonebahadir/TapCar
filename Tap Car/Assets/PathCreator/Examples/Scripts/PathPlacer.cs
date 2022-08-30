@@ -1,4 +1,5 @@
 ﻿using PathCreation;
+using TMPro;
 using UnityEngine;
 
 namespace PathCreation.Examples {
@@ -27,7 +28,8 @@ namespace PathCreation.Examples {
                     {
                         Vector3 point = path.GetPointAtDistance(dst);
                         Quaternion rot = path.GetRotationAtDistance(dst);
-                        Instantiate(prefab, point+new Vector3(-3,0,0),Quaternion.Euler(rot.eulerAngles.x, rot.eulerAngles.y-180, rot.eulerAngles.z+90), holder.transform);
+                        GameObject park = Instantiate(prefab, point+new Vector3(-3,0,0),Quaternion.Euler(rot.eulerAngles.x, rot.eulerAngles.y-180, rot.eulerAngles.z+90), holder.transform);
+                        park.transform.GetChild(3).GetComponent<TextMeshPro>().text = (park.transform.GetSiblingIndex()+1).ToString();
                         dst += spacing;
                         adet++;
                     }

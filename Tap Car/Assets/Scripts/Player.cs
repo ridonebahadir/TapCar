@@ -17,15 +17,15 @@ public class Player : MonoBehaviour
         pathFollower.pathCreator = pathFollower.transform.parent.GetComponent<PathCreator>();
         playerParent = transform.parent.parent.GetComponent<PlayerParent>();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(()=>
-            playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1)
-            ).SetEase(Ease.OutElastic);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        playerParent.completedCarText.transform.DOScale(new Vector3(1, 1, 1), 3).OnComplete(()=>
+    //        playerParent.completedCarText.transform.DOScale(new Vector3(0, 0, 0), 1)
+    //        ).SetEase(Ease.OutElastic);
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag==("ParkArea"))
