@@ -24,7 +24,7 @@ public class PlayerParent : MonoBehaviour
     bool oneTime;
     public Material[] material;
     public bool run = true;
-
+    private PathCreator pathCreator;
     [Space(30)]
     [Header("Final")]
     public ParticleSystem confetti;
@@ -32,6 +32,11 @@ public class PlayerParent : MonoBehaviour
     public int completedCar;
     public bool parkTrue;
     public GameObject failText;
+    private void Awake()
+    {
+        pathCreator = GetComponent<PathCreator>();
+        pathCreator.bezierPath.DeleteSegment(0);
+    }
     void Start()
     {
         
@@ -142,12 +147,12 @@ public class PlayerParent : MonoBehaviour
     IEnumerator CarsMoveForward()
     {
 
-        //for (int i = 1; i < cars.Count; i++)
-        //{
-        //    GameObject car = cars[i].transform.gameObject;
-        //    cars[i].transform.DOLocalMoveZ(cars[i].transform.localPosition.z + 3, 0.3f);
-        yield return new WaitForSeconds(0.3f);
-        //}
+        for (int i = cars.Count-2; i >=0; i--)
+        {
+            GameObject car = cars[i].transform.gameObject;
+            cars[i].transform.DOLocalMoveZ(cars[i].transform.localPosition.z + 3, 0.3f);
+            yield return new WaitForSeconds(0.3f);
+        }
     }
     public void Fail()
     {

@@ -9,9 +9,9 @@ namespace PathCreation.Examples {
         public GameObject prefab;
         public GameObject holder;
         public float spacing = 3;
-        
+        public bool isPark;
         const float minSpacing = .1f;
-
+        float dst = 8;
         void Generate () {
             if (pathCreator != null && prefab != null && holder != null) {
                 DestroyObjects ();
@@ -19,15 +19,33 @@ namespace PathCreation.Examples {
                 VertexPath path = pathCreator.path;
 
                 spacing = Mathf.Max(minSpacing, spacing);
-                float dst = 5;
-                int adet = 0;
-                while (adet < 5) {
-                    Vector3 point = path.GetPointAtDistance (dst);
-                    Quaternion rot = path.GetRotationAtDistance (dst);
-                    Instantiate (prefab, point, rot, holder.transform);
-                    dst += spacing;
-                    adet++;
+                if (isPark)
+                {
+                     dst = 40;
+                    int adet = 0;
+                    while (adet < 5)
+                    {
+                        Vector3 point = path.GetPointAtDistance(dst);
+                        Quaternion rot = path.GetRotationAtDistance(dst);
+                        Instantiate(prefab, point+new Vector3(-3,0,0),Quaternion.Euler(rot.eulerAngles.x, rot.eulerAngles.y-180, rot.eulerAngles.z+90), holder.transform);
+                        dst += spacing;
+                        adet++;
+                    }
                 }
+                else
+                {
+                     dst = 8;
+                    int adet = 0;
+                    while (adet < 5)
+                    {
+                        Vector3 point = path.GetPointAtDistance(dst);
+                        Quaternion rot = path.GetRotationAtDistance(dst);
+                        Instantiate(prefab, point, rot, holder.transform);
+                        dst += spacing;
+                        adet++;
+                    }
+                }
+               
             }
         }
 
